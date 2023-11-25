@@ -1,17 +1,19 @@
+// ignore_for_file: camel_case_types
+
 import 'package:flutter/material.dart';
 
 class Mine extends StatefulWidget {
-  var _title;
+  final String _title;
 
-  Mine(String title) {
-    this._title = title;
-  }
-
+  const Mine(this._title, {super.key});
+  
   @override
-  _mine createState() => _mine();
+  State<StatefulWidget> createState() {
+    return _Mine();
+  }
 }
 
-class _mine extends State<Mine> {
+class _Mine extends State<Mine> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -21,15 +23,6 @@ class _mine extends State<Mine> {
       ),
     );
   }
-}
-
-class PageHome extends StatefulWidget {
-  String _title;
-
-  PageHome(this._title);
-
-  @override
-  _PageHomeState createState() => _PageHomeState();
 }
 
 class _PageHomeState extends State<PageHome> {
@@ -42,9 +35,22 @@ class _PageHomeState extends State<PageHome> {
       body: Center(
         child: Text(
           '${widget._title}内容',
-          style: TextStyle(fontSize: 20),
+          style: const TextStyle(fontSize: 20),
         ),
       ),
     );
   }
 }
+
+class PageHome extends StatefulWidget {
+  final String _title;
+
+  const PageHome(this._title, {super.key});
+  
+  @override
+  State<StatefulWidget> createState() {
+    return _PageHomeState();
+  }
+}
+
+

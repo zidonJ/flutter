@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'dart:math' as math;
-import 'package:my_app/chatRoom/direct_triangle.dart';
+// import 'package:my_app/chatRoom/direct_triangle.dart';
 
 enum BubbleType { left, right }
 
@@ -28,25 +28,27 @@ class CustomShape extends CustomPainter {
 }
 
 class ChatBubble extends StatelessWidget {
-  var type;
-  String? text;
-  String? image_url;
-  String? video_url;
-  String? autio_url;
-  ChatBubble(this.type, String? text, String? image_url, String? video_url,
-      String? autio_url) {
-    this.type = type;
-    this.text = text;
-    this.image_url = image_url;
-    this.video_url = video_url;
-    this.autio_url = autio_url;
-  }
+  final BubbleType type;
+  final String text;
+  final String image_url;
+  final String video_url;
+  final String autio_url;
+
+  ChatBubble(this.type,this.text,this.image_url,this.video_url,this.autio_url,{super.key});
+  // ChatBubble(this.type, String? text, String? image_url, String? video_url,
+  //     String? autio_url) {
+  //   this.type = type;
+  //   this.text = text;
+  //   this.image_url = image_url;
+  //   this.video_url = video_url;
+  //   this.autio_url = autio_url;
+  // }
   @override
   Widget build(BuildContext context) {
-    if (this.type == BubbleType.left) {
-      return LeftChatBubble(text ?? "缺省");
+    if (type == BubbleType.left) {
+      return LeftChatBubble(text);
     } else {
-      return RightChatBubble(text ?? "缺省");
+      return RightChatBubble(text);
     }
   }
 }
@@ -71,10 +73,10 @@ class LeftChatBubble extends StatelessWidget {
         ),
         Flexible(
           child: Container(
-            padding: EdgeInsets.all(14),
+            padding: const EdgeInsets.all(14),
             decoration: BoxDecoration(
               color: Colors.grey[300],
-              borderRadius: BorderRadius.only(
+              borderRadius: const BorderRadius.only(
                 topLeft: Radius.circular(8),
                 topRight: Radius.circular(8),
                 bottomLeft: Radius.circular(8),
@@ -83,7 +85,7 @@ class LeftChatBubble extends StatelessWidget {
             ),
             child: Text(
               message,
-              style: TextStyle(color: Colors.black, fontSize: 14),
+              style: const TextStyle(color: Colors.black, fontSize: 14),
             ),
           ),
         ),
@@ -91,11 +93,11 @@ class LeftChatBubble extends StatelessWidget {
     ));
 
     return Padding(
-      padding: EdgeInsets.only(right: 50.0, left: 18, top: 10, bottom: 5),
+      padding: const EdgeInsets.only(right: 50.0, left: 18, top: 10, bottom: 5),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.end,
         children: <Widget>[
-          SizedBox(height: 30),
+          const SizedBox(height: 30),
           messageTextGroup,
         ],
       ),
@@ -104,11 +106,10 @@ class LeftChatBubble extends StatelessWidget {
 }
 
 class RightChatBubble extends StatelessWidget {
-  var message;
-  RightChatBubble(String message) {
-    this.message = message;
-  }
+  final String message;
   final Color cyan = Colors.cyan[900]!;
+  RightChatBubble(this.message,{super.key});
+  
   @override
   Widget build(BuildContext context) {
     final messageTextGroup = Flexible(
@@ -118,10 +119,10 @@ class RightChatBubble extends StatelessWidget {
       children: [
         Flexible(
           child: Container(
-            padding: EdgeInsets.all(14),
+            padding: const EdgeInsets.all(14),
             decoration: BoxDecoration(
               color: Colors.cyan[900],
-              borderRadius: BorderRadius.only(
+              borderRadius: const BorderRadius.only(
                 topRight: Radius.circular(8),
                 topLeft: Radius.circular(8),
                 bottomLeft: Radius.circular(8),
@@ -130,7 +131,7 @@ class RightChatBubble extends StatelessWidget {
             ),
             child: Text(
               message,
-              style: TextStyle(color: Colors.white, fontSize: 14),
+              style: const TextStyle(color: Colors.white, fontSize: 14),
             ),
           ),
         ),
@@ -139,11 +140,11 @@ class RightChatBubble extends StatelessWidget {
     ));
 
     return Padding(
-      padding: EdgeInsets.only(right: 18.0, left: 50, top: 15, bottom: 5),
+      padding: const EdgeInsets.only(right: 18.0, left: 50, top: 15, bottom: 5),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.end,
         children: <Widget>[
-          SizedBox(height: 30),
+          const SizedBox(height: 30),
           messageTextGroup,
         ],
       ),

@@ -1,14 +1,12 @@
 import 'package:flutter/material.dart';
 // import 'package:sprintf/sprintf.dart';
-import 'package:intl/intl.dart';
+// import 'package:intl/intl.dart';
 import 'package:my_app/chatRoom/chat_room.dart';
 
 class Chats extends StatefulWidget {
-  var _title;
+  final String _title;
 
-  Chats(String title) {
-    this._title = title;
-  }
+  Chats(this._title,{super.key});
 
   @override
   _ChatsState createState() => _ChatsState();

@@ -63,9 +63,9 @@ class _ChatItemTile extends State<TextTile> {
         child: ChatBubble(
           model.side == 1 ? BubbleType.left : BubbleType.right,
           model.text,
-          null,
-          null,
-          null,
+          "",
+          "",
+          "",
         ),
       ),
     );

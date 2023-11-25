@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
 
 class WatchVideos extends StatefulWidget {
-  var _title;
+  final String _title;
 
-  WatchVideos(String title) {
-    this._title = title;
-  }
+  WatchVideos(this._title,{super.key});
 
   @override
   State<WatchVideos> createState() => _WatchVideos();

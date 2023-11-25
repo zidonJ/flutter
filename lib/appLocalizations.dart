@@ -1,8 +1,9 @@
-import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
+// import 'package:flutter/foundation.dart';
+// import 'package:flutter/material.dart';
 
 
 class AppLocalizations {
+  // ignore: unused_field
   static const _localizedValues = <String, Map<String, String>>{
     'en': {
       'add_a_group_name': 'Add a group name',

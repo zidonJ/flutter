@@ -68,7 +68,7 @@ class _HomePage extends State<HomePage> {
                 icon: const Icon(Icons.access_alarm), label: titles[2]),
           ],
           onTap: (value) {
-            setState(() => {_currentIndex = value});
+            setState(() => _currentIndex = value);
           },
           currentIndex: _currentIndex,
         ),

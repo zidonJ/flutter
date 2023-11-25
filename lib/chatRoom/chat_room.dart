@@ -1,33 +1,37 @@
+// ignore_for_file: non_constant_identifier_names
+
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
-import 'dart:ui';
-import 'dart:io';
+// import 'dart:ui';
+// import 'dart:io';
 import 'package:flutter/services.dart';
 import 'package:my_app/chatRoom/chat_model.dart';
 import 'package:my_app/chatRoom/text_tile.dart';
-import 'package:my_app/chatRoom/emoj_tile.dart';
-import 'package:my_app/chatRoom/image_tile.dart';
-import 'package:my_app/chatRoom/video_tile.dart';
+// import 'package:my_app/chatRoom/emoj_tile.dart';
+// import 'package:my_app/chatRoom/image_tile.dart';
+// import 'package:my_app/chatRoom/video_tile.dart';
 import 'package:my_app/web_socket_util.dart';
 
 import 'keyboard.dart';
 
 class ChatRoom extends StatefulWidget {
-  var title;
 
-  ChatRoom(String title) {
-    this.title = title;
-  }
+  final String title;
 
+  const ChatRoom(this.title, {super.key});
+  
   @override
-  State<ChatRoom> createState() => _ChatRoomState();
+  State<StatefulWidget> createState() {
+    return _ChatRoomState();
+  }
 }
 
 class _ChatRoomState extends State<ChatRoom> {
-  final TextEditingController _controller = TextEditingController();
-  final screen_width = window.physicalSize.width;
-  final screen_height = window.physicalSize.height;
+  
+  // final TextEditingController _controller = TextEditingController();
+  double screen_width = 0;
+  double screen_height = 0;
 
   var devicePixelRatio = 0.0;
 
@@ -48,21 +52,19 @@ class _ChatRoomState extends State<ChatRoom> {
 
   disposeData() {
     Future<List<ChatModel>> list = getChatModels();
-    list
-        .then((value) => {
-              setState(() => {
-                    print("数据加载成功1111"),
-                    cts = value,
-                  }),
-              print("数据量:${cts}"),
-            })
-        .whenComplete(() => {
-              print("数据量111:${cts}"),
-            });
+    list.then((value) => {
+          setState(() => {
+              print("数据加载成功1111"),
+                cts = value,
+              }),
+          print("数据量:$cts"),
+        })
+        .whenComplete(() => print("数据量111:$cts")
+        );
   }
 
   Widget getList_tile(int index) {
-    if (cts.length > 0) {
+    if (cts.isEmpty) {
       ChatModel model = cts[index];
       if (model.msgType == 1) {
         return TextTile(index, model);
@@ -90,22 +92,12 @@ class _ChatRoomState extends State<ChatRoom> {
 
   @override
   Widget build(BuildContext context) {
+
+    double screen_width = MediaQuery.of(context).size.width;
+    double screen_height = MediaQuery.of(context).size.height;
+    
     print("屏幕宽度:${screen_width / 3.0},屏幕高度:${screen_height / 3.0}");
     devicePixelRatio = MediaQuery.of(context).devicePixelRatio;
-
-    // return Scaffold(
-    //   body: Padding(
-    //     padding: EdgeInsets.fromLTRB(0, 200, 0, 100),
-    //     child: Column(
-    //       children: [
-    //         Expanded(
-    //             child: Container(
-    //           color: Colors.red,
-    //         ))
-    //       ],
-    //     ),
-    //   ),
-    // );
 
     return Scaffold(
       resizeToAvoidBottomInset: false,

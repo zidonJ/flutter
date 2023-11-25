@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
 
 class ReadBook extends StatefulWidget {
-  var _title;
+  final String _title;
 
-  ReadBook(String title) {
-    this._title = title;
-  }
+  ReadBook(this._title,{super.key});
 
   @override
   State<ReadBook> createState() => _Readbook();
